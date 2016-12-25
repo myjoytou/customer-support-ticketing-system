@@ -10,4 +10,6 @@ class User < ApplicationRecord
   def inactive_message
     self.is_active? ? super : "User is not allowed to sign in! Please contact your admin"
   end
+
+  has_many :tickets
 end
