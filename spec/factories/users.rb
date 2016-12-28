@@ -22,7 +22,15 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_admin_role do
+      after :create do |user|
+        user.admin = true
+        user.save!
+      end
+    end
+
     factory :support, traits: [:with_support_role]
+    factory :admin, traits: [:with_admin_role]
     factory :inactive_user, traits: [:with_inactive_status]
   end
 end
