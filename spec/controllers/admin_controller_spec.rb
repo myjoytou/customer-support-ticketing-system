@@ -75,4 +75,58 @@ RSpec.describe AdminController, type: :controller do
     expect(response.status).to eq(200)
   end
 
+  it "assign support role to the user" do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in FactoryGirl.create(:admin)
+    post "assign_support_role", {params: {user_id: user.id}, format: :json}
+    puts "==================== Success ============== #{response.body}"
+    expect(response.status).to eq(201)
+    expect(User.find(user.id).support).to eq(true)
+  end
+
+  it "assign admin role to the user" do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in FactoryGirl.create(:admin)
+    post "assign_admin_role", {params: {user_id: user.id}, format: :json}
+    expect(response.status).to eq(201)
+    puts "==================== Success ============== #{response.body}"
+    expect(User.find(user.id).admin).to eq(true)
+  end
+
+  it "deny admin role to the user" do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in FactoryGirl.create(:admin)
+    user = FactoryGirl.create(:admin)
+    post "deny_admin_role", {params: {user_id: user.id}, format: :json}
+    puts "==================== Success ============== #{response.body}"
+    expect(user.admin).to eq(true)
+    expect(response.status).to eq(201)
+    expect(User.find(user.id).admin).to eq(false)
+  end
+
+  it "deny support role to the user" do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in FactoryGirl.create(:admin)
+    user = FactoryGirl.create(:support)
+    post "deny_support_role", {params: {user_id: user.id}, format: :json}
+    puts "==================== Success ============== #{response.body}"
+    expect(user.support).to eq(true)
+    expect(response.status).to eq(201)
+    expect(User.find(user.id).support).to eq(false)
+  end
+
+  it "does process open ticket (change status to closed)" do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    admin = FactoryGirl.create(:admin)
+    sign_in admin
+    open_ticket = FactoryGirl.create(:ticket)
+    expect(open_ticket.status).to eq('Open')
+    post "process_pending_tickets", {params: {ticket_id: open_ticket.id, status: "Closed"}, format: :json}
+    puts "==================== Success ============== #{response.body}==== #{open_ticket.id}====#{Ticket.find(open_ticket.id).id}"
+    expect(response.status).to eq(201)
+    # expect(Ticket.find(open_ticket.id).status).to eq('Open')
+    expect(Ticket.find(open_ticket.id).status).to eq("Closed")
+    expect(Ticket.find(open_ticket.id).worker_id).to eq(admin.id)
+  end
+
 end
