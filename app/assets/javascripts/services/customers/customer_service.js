@@ -12,7 +12,7 @@
                     deferred.resolve(response);
                 },
                     function (error) {
-                        deferred.reject(error);
+                        deferred.reject(error.data);
                     }
                 );
                 return deferred.promise;
@@ -24,7 +24,7 @@
                     deferred.resolve(response);
                 },
                     function (error) {
-                        deferred.reject(error);
+                        deferred.reject(error.data);
                     }
                 );
                 return deferred.promise;
