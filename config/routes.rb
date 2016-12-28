@@ -18,4 +18,9 @@ Rails.application.routes.draw do
   post 'customers/create_new_ticket', to: 'customer#create_new_ticket'
   post 'admins/deactivate_user', to: 'admin#deactivate_user'
   post 'admins/activate_user', to: 'admin#activate_user'
+  post 'admins/assign_support_role', to: 'admin#assign_support_role'
+  post 'admins/assign_admin_role', to: 'admin#assign_admin_role'
+  post 'admins/deny_admin_role', to: 'admin#deny_admin_role'
+  post 'admins/deny_support_role', to: 'admin#deny_support_role'
+  post 'admins/process_pending_tickets', to: 'admin#process_pending_tickets'
 end
