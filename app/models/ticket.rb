@@ -25,8 +25,9 @@ class Ticket < ApplicationRecord
     ticket.save!
   end
 
-  def process_ticket(status)
+  def process_ticket(status, current_user)
     self.status = status
+    self.worker_id = current_user.id
     self.save!
   end
 
