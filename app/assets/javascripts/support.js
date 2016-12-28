@@ -11,7 +11,7 @@
             $stateProvider.state('supportHome', {
                 url: '/home',
                 templateUrl: '/assets/support/support_home.html',
-                controller: 'HomeCtrl'
+                controller: 'SupportCtrl'
             });
             $stateProvider.state('supportHome.welcome', {
                 url: '/welcome',
@@ -22,16 +22,10 @@
                 url: '/tickets',
                 templateUrl: '/assets/support/support_pending_tickets.html'
             });
-
-            $stateProvider.state('supportHome.newTicket', {
-                url: '/new_ticket',
-                templateUrl: '/assets/support/support_new_ticket.html'
-            });
-            growlProvider.globalTimeToLive(1000);
+            growlProvider.globalTimeToLive(3000);
         }])
 
-        .controller('HomeCtrl', ['$scope', '$q', 'SupportService', 'growl', '$state', function ($scope, $q, SupportService, growl, $state) {
-            $scope.newTicket = {};
+        .controller('SupportCtrl', ['$scope', '$q', 'SupportService', 'growl', '$state', function ($scope, $q, SupportService, growl, $state) {
             $scope.pendingTickets;
             $scope.getPendingTicket = function () {
                 SupportService.getPendingTicket().then(function (response) {
