@@ -5,14 +5,14 @@
     "use strict";
     angular.module('SupportApp')
         .factory('SupportService', ['$http', '$q', function ($http, $q) {
-            var customers = {};
+            var supports = {};
             var getPendingTicket = function () {
                 var deferred = $q.defer();
                 $http.get('/supports/get_pending_tickets.json').then(function (response) {
                         deferred.resolve(response);
                     },
                     function (error) {
-                        deferred.reject(error);
+                        deferred.reject(error.data);
                     }
                 );
                 return deferred.promise;
@@ -24,7 +24,7 @@
                         deferred.resolve(response);
                     },
                     function (error) {
-                        deferred.reject(error);
+                        deferred.reject(error.data);
                     }
                 );
                 return deferred.promise;
@@ -49,9 +49,9 @@
                 return deferred.promise;
             };
 
-            customers.downloadClosedTicketReport = downloadClosedTicketReport;
-            customers.getPendingTicket = getPendingTicket;
-            customers.processTicket = processTicket;
-            return customers;
+            supports.downloadClosedTicketReport = downloadClosedTicketReport;
+            supports.getPendingTicket = getPendingTicket;
+            supports.processTicket = processTicket;
+            return supports;
         }])
 })();
