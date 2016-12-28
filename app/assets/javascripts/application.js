@@ -13,7 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require angular.min
 //= require bootstrap.min
+//= require angular.min
+//= require jquery.fileDownload
+//= require angular-sanitize
 //= require angular-flash
+//= require angular-ui.min
+//= require angular-mocks
+//= require angular-material
+//= require customer.js
+//= require support.js
+//= require admin.js
 //= require_tree .
