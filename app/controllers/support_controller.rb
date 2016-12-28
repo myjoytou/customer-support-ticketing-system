@@ -13,7 +13,7 @@ class SupportController < ApplicationController
 
   def process_pending_tickets
     validate_params
-    ticket = Ticket.open_tickets.where(params[:ticket_id].to_s).first if Ticket.open_tickets.present?
+    ticket = Ticket.open_tickets.where(id: params[:ticket_id]).first if Ticket.open_tickets.present?
     raise "Ticket not present" if ticket.blank?
     ticket.process_ticket params[:status], current_user
     respond_with({data: '', status: @@status[:success], error_message: ''}, location: '/')
