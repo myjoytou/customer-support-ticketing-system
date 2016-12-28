@@ -9,12 +9,11 @@ RSpec.describe CustomerController, type: :controller do
     puts "================ #{response.body}"
   end
 
-  #todo : need to change it to created ticket
   it "does return status as Success when trying to create ticket" do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     sign_in FactoryGirl.create(:user)
-    get "get_previous_tickets", format: :json
-    expect(response.status).to eq(200)
+    post "create_new_ticket",{params: {name: 'something'} ,format: :json}
+    expect(response.status).to eq(201)
     puts "=========success======= #{response.body}"
   end
 
