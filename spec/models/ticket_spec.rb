@@ -38,7 +38,7 @@ RSpec.describe Ticket, type: :model do
   end
 
   it "does change the status of the ticket" do
-    ticket.process_ticket("Closed")
+    ticket.process_ticket("Closed", user)
     expect(ticket.status).to eq("Closed")
   end
 
