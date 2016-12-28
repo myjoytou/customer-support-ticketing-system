@@ -61,7 +61,7 @@ body {
   md-card {
     background: #3e3e3e;
     color: white;
-
+    font-size: 1.2em;
     md-card-content > div.cell:nth-of-type(odd){
       background: #a3a3a3;
     }
@@ -96,4 +96,10 @@ textarea {
 .alert-container {
   position: fixed;
   top: 54px;
+}
+.active {
+  color: green;
+}
+.inactive {
+  color: red;
 }
