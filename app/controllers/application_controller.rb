@@ -26,7 +26,6 @@ class ApplicationController < ActionController::Base
   def wrap_in_transaction
     begin
       ActiveRecord::Base.transaction do
-        FlashMessage.reset!
         yield
       end
     rescue Exception => e
