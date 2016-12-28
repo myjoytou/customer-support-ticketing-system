@@ -19,12 +19,13 @@ RSpec.describe SupportController, type: :controller do
     puts "========Failure============= #{response.body}"
   end
 
-  it "does return status as success when user is support" do
+  it "does return pending tickets when user is support" do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     sign_in FactoryGirl.create(:support)
     get "get_pending_tickets", format: :json
     puts "========Success============= #{response.body}"
     expect(response.status).to eq(200)
+    expect(JSON.parse(response.body)["data"].count).to eq(Ticket.open_tickets.where(worker_id: nil).count)
   end
 
   it "does process pending tickets" do
@@ -36,20 +37,22 @@ RSpec.describe SupportController, type: :controller do
     expect(response.status).to eq(201)
   end
 
-  it "does return error if there are no closed tickets in one month" do
+  it "does return error if there are no closed tickets in one month for that user" do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    sign_in FactoryGirl.create(:support)
-    get "get_closed_tickets", format: :pdf
+    support = FactoryGirl.create(:support)
+    support.tickets = []
+    sign_in support
+    get "get_closed_tickets_report", format: :pdf
     puts "==================== Success ============== #{response.body}"
     expect(response.status).to eq(401)
   end
 
   it "does get the pdf of closed tickets of one month" do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    puts "============== the user is #{user.id}"
-    FactoryGirl.create(:closed_ticket_with_user, user: support)
+    ticket = FactoryGirl.create(:closed_ticket_with_worker, user: support)
+    puts "============== the user is #{support.id} and ticket is: #{ticket.worker_id}"
     sign_in support
-    get "get_closed_tickets", format: :pdf
+    get "get_closed_tickets_report", format: :pdf
     puts "==================== Success ============== #{response.body}"
     expect(response.status).to eq(200)
   end
