@@ -26,8 +26,16 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_worker do
+      after :create do |ticket, evaluator|
+        ticket.worker_id = evaluator.user.id
+        ticket.save!
+      end
+    end
+
     factory :closed_ticket, traits: [:with_closed_status]
     factory :closed_ticket_with_user, traits: [:with_closed_status, :with_user]
+    factory :closed_ticket_with_worker, traits: [:with_closed_status, :with_worker]
     # trait :with_support_role do
     #   after :create do |user|
     #     user.support = true
