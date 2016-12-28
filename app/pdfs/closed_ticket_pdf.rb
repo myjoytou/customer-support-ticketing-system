@@ -3,7 +3,7 @@ class ClosedTicketPdf < Prawn::Document
   def initialize(closed_tickets)
     super(top_margin: 70)
     @closed_tickets = closed_tickets
-    table format_ticket(@closed_tickets), header: true, column_widths: [30, 45, 50, 100, 100, 45, 45, 60, 60], cell_style: { font: "Times-Roman", size: 12 }
+    table format_ticket(@closed_tickets), header: true, column_widths: [30, 45, 50, 90, 95, 45, 45, 60, 60], cell_style: { font: "Times-Roman", size: 12 }
   end
 
   def format_ticket(ticket)
