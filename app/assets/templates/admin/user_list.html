@@ -1,0 +1,36 @@
+<div class="text-center" ng-if="userList.length > 0"><h3>System Users</h3></div>
+<div ng-repeat="user in userList">
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-title">{{ user.name }}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <div class="col-md-12 cell">
+                <div class="col-md-6"> Email</div>
+                <div class="col-md-6">{{user.email}}</div>
+            </div>
+            <div class="col-md-12 cell">
+                <div class="col-md-6">Status</div>
+                <div class="col-md-6" ng-class="{active: user.is_active, inactive: !user.is_active}">{{user.is_active | statusFilter}}</div>
+            </div>
+            <div class="col-md-12 cell">
+                <div class="col-md-6">Is Support User</div>
+                <div class="col-md-6" ng-class="{active: user.support, inactive: !user.support}">{{user.support | booleanFilter}}</div>
+            </div>
+            <div class="col-md-12 cell">
+                <div class="col-md-6">Is Admin User</div>
+                <div class="col-md-6" ng-class="{active: user.admin, inactive: !user.admin}">{{user.admin | booleanFilter}}</div>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-primary" ng-if="user.is_active" ng-click="deactivateUser(user.id)">Deactivate User</button>
+                <button class="btn btn-primary" ng-if="!user.is_active" ng-click="activateUser(user.id)">Activate User</button>
+                <button class="btn btn-primary" ng-if="!user.support" ng-click="assignSupportRoleToUser(user.id)">Assign Support Role</button>
+                <button class="btn btn-primary" ng-if="user.support" ng-click="denySupportRoleToUser(user.id)">Deny Support Role</button>
+                <button class="btn btn-primary" ng-if="!user.admin" ng-click="assignAdminRoleToUser(user.id)">Assign Admin Role</button>
+                <button class="btn btn-primary" ng-if="user.admin" ng-click="denyAdminRoleToUser(user.id)">Deny Admin Role</button>
+            </div>
+        </md-card-content>
+    </md-card>
+</div>
