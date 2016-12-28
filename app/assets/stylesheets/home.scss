@@ -1,3 +1,99 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//p.alert {
+//  background: rgba(255, 0, 0, 0.5);
+//  font-weight: bold;
+//}
+//p.notice {
+//  background: rgba(0, 255, 0, 0.5);
+//  font-weight: bold;
+//}
+//div.customer-welcome {
+//  height: 60px;
+//  padding-top: 1em;
+//}
+body {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+//.main-wrapper {
+//  background-color: #e9e9e9;
+//}
+//
+//.sidebar-surround {
+//  width: 100%;
+//}
+//
+//.sidebar-wrapper{
+//  height: 600px;
+//  padding-top: 1em;
+//  //-webkit-box-shadow: inset 1px 1px 10px black;
+//  //-moz-box-shadow: inset 1px 1px 10px black;
+//  //box-shadow: inset 1px 1px 10px black;
+//  background: url('/assets/sidebar.jpg') no-repeat center center;
+//  background-size: cover;
+//  .sidebar {
+//    padding: 1em;
+//    cursor: pointer;
+//    //background-color: black;
+//    -webkit-box-shadow: inset 1px 1px 5px black;
+//    -moz-box-shadow: inset 1px 1px 5px black;
+//    box-shadow: inset 1px 1px 5px black;
+//    .sidebar-option {
+//      color: rgba(255, 255, 255, 1);
+//    }
+//    a {
+//      text-decoration: none;
+//    }
+//
+//  }
+//}
+.sidebar-option {
+  padding: 1em;
+  color: #777;
+  cursor: pointer;
+}
+.content-wrapper {
+  padding: 1em;
+  box-shadow: 1px 1px 5px;
+  md-card {
+    background: #3e3e3e;
+    color: white;
+
+    md-card-content > div.cell:nth-of-type(odd){
+      background: #a3a3a3;
+    }
+  }
+}
+
+.form-wrapper {
+  padding: 1em;
+}
+
+.Closed {
+  color: green;
+}
+.Open {
+  color: red;
+}
+.welcome-message {
+  height: 60px;
+  padding: 1em;
+}
+
+textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.alert-container {
+  position: fixed;
+  top: 54px;
+}
