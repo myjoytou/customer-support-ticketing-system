@@ -9,7 +9,7 @@ class CustomerController < ApplicationController
   def create_new_ticket
     validate_params params
     Ticket.create_support_ticket(params, current_user)
-    respond_with({data: '', status: @@status[:success], error_message: ''})
+    respond_with({data: '', status: @@status[:success], error_message: ''}, location: '/')
   end
 
   private
