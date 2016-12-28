@@ -1,0 +1,31 @@
+<div class="text-center" ng-if="pendingTickets.length > 0"><h3>Your previous ticekts</h3></div>
+<div ng-repeat="ticket in pendingTickets">
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-title">{{ ticket.name }}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <div class="col-md-12 cell">
+                <div class="col-md-6">Status</div>
+                <div class="col-md-6" ng-class="[ticket.status]">{{ticket.status}}</div>
+            </div>
+            <div class="col-md-12 cell">
+                <div class="col-md-6"> Short Description</div>
+                <div class="col-md-6">{{ticket.short_description}}</div>
+            </div>
+            <div class="col-md-12 cell">
+                <div class="col-md-6">Long Description</div>
+                <div class="col-md-6">{{ticket.long_description}}</div>
+            </div>
+            <div class="col-md-12 cell">
+                <div class="col-md-6">Creation Date</div>
+                <div class="col-md-6">{{ticket.created_at}}</div>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-primary pull-right" ng-click="processTicket(ticket.id)">Process Ticket</button>
+            </div>
+        </md-card-content>
+    </md-card>
+</div>

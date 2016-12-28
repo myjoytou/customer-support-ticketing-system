@@ -1,0 +1,44 @@
+<!--<div class="sidebar-surround">-->
+    <!--<div id="sideNavContainer" class="col-md-3 fill-height" layout="column">-->
+        <!--<md-sidenav md-component-id="left" class="md-sidenav-left sidebar-wrapper fill" md-is-locked-open="$mdMedia('gt-md')">-->
+            <!--<div class="col-md-12 sidebar" ng-click="goToWelcome()"><span class="sidebar-option">Home</span></div>-->
+            <!--<div class="col-md-12 sidebar" ng-click="viewPreviousTickets()"><span class="sidebar-option" >View Previous Tickets</span></div>-->
+            <!--<div class="col-md-12 sidebar" ng-click="createTicket()"><span class="sidebar-option">Create New Ticket</span></div>-->
+        <!--</md-sidenav>-->
+    <!--</div>-->
+<!--</div>-->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="home.welcome">Home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="sidebar-option"><span ng-click="viewPreviousTickets()">View Previous Tickets</span></li>
+                <li class="sidebar-option"><span ng-click="goToCreateMenu()">Create New Ticket</span></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<flash_message></flash_message>
+
+<div class="content-wrapper" ng-cloak>
+    <ui_view></ui_view>
+</div>
+
+
+<!--<div class="text-center"><h4>Welcome to Customer Support Ticketing System</h4></div>N-->
+<!--<div class="text-center">-->
+    <!--<div class="col-md-6"><button class="btn btn-info" ng-click="viewPreviousTickets()">View Previous Tickets</button></div>-->
+    <!--<div class="col-md-6"><button class="btn btn-info">Create New Ticket</button></div>-->
+<!--</div>-->
