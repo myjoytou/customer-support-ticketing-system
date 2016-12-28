@@ -10,7 +10,7 @@ FactoryGirl.define do
     short_description { Faker::Lorem.words(rand(10)+1).join(" ") }
     long_description { Faker::Lorem.words(rand(30)+1).join(" ") }
     status {"Open"}
-    user_id {1}
+    user_id {FactoryGirl.create(:user).id}
 
     trait :with_closed_status do
       after :create do |ticket|
