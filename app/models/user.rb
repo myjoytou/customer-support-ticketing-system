@@ -13,6 +13,16 @@ class User < ApplicationRecord
     self.save!
   end
 
+  def assign_role(role)
+    self[role] = true
+    self.save!
+  end
+
+  def deny_role(role)
+    self[role] = false
+    self.save!
+  end
+
   def activate
     self.is_active = true
     self.save!
