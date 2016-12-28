@@ -30,11 +30,14 @@ RSpec.describe SupportController, type: :controller do
 
   it "does process pending tickets" do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    sign_in FactoryGirl.create(:support)
-    FactoryGirl.create(:closed_ticket, user_id: user.id)
+    support = FactoryGirl.create(:support)
+    sign_in support
+    ticket = FactoryGirl.create(:ticket, user_id: user.id)
     post "process_pending_tickets", { params: {ticket_id: ticket.id, status: "Closed"} , format: :json}
     puts "========Success============= #{response.body}"
     expect(response.status).to eq(201)
+    expect(Ticket.find(ticket.id).status).to eq("Closed")
+    expect(Ticket.find(ticket.id).worker_id).to eq(support.id)
   end
 
   it "does return error if there are no closed tickets in one month for that user" do
