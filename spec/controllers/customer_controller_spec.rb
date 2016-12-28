@@ -9,6 +9,7 @@ RSpec.describe CustomerController, type: :controller do
     puts "================ #{response.body}"
   end
 
+  #todo : need to change it to created ticket
   it "does return status as Success when trying to create ticket" do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     sign_in FactoryGirl.create(:user)
