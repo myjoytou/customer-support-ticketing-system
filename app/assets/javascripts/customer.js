@@ -24,7 +24,7 @@
                 url: '/new_ticket',
                 templateUrl: '/assets/customer/new_ticket.html'
             })
-            growlProvider.globalTimeToLive(5000);
+            growlProvider.globalTimeToLive(3000);
         }])
 
         .controller('HomeCtrl', ['$scope', '$q', 'CustomerService', 'growl', '$state', function ($scope, $q, CustomerService, growl, $state) {
@@ -36,14 +36,14 @@
                     console.log('the response is: ', response);
                     $state.go('home.tickets');
                     if (response.data.data.length == 0) {
-                        Flash.create('success', 'No Tickets Found!', 3000);
-                    }
-                    else {
-                        Flash.create('success', 'Success!', 6000);
+                        // Flash.create('success', 'No Tickets Found!', 3000);
+                        // growl.success('Ticket Processed!',{title: 'Success!'});
+                        growl.error('No Tickets Found!',{title: 'Error!'});
                     }
                 },
                     function (error) {
-                        Flash.create('error', error, 3000);
+                        // Flash.create('error', error, 3000);
+                        growl.error('Error! ' + error,{title: 'Error!'});
                     }
                 )
             };
@@ -56,12 +56,12 @@
             $scope.createNewTicket = function () {
                 console.log('coming into this function', $scope.newTicket);
                 CustomerService.createTicket($scope.newTicket).then(function (response) {
-                    Flash.create('success', 'Ticket creation successful!', 3000);
+                    growl.success('Ticket Created!',{title: 'Success!'});
                     $scope.newTicket = {};
                 },
                     function (error) {
                         console.log('the error is: ', error);
-                        Flash.create('error', "Error: " + error, 3000);
+                        growl.error('Error! ' + error,{title: 'Error!'});
                     }
                 )
             }
