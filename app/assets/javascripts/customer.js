@@ -23,7 +23,7 @@
             $stateProvider.state('home.newTicket', {
                 url: '/new_ticket',
                 templateUrl: '/assets/customer/new_ticket.html'
-            })
+            });
             growlProvider.globalTimeToLive(3000);
         }])
 
@@ -33,21 +33,17 @@
             $scope.viewPreviousTickets = function () {
                 CustomerService.getPreviousTickets().then(function (response) {
                     $scope.previousTickets = response.data.data;
-                    console.log('the response is: ', response);
                     $state.go('home.tickets');
                     if (response.data.data.length == 0) {
-                        // Flash.create('success', 'No Tickets Found!', 3000);
-                        // growl.success('Ticket Processed!',{title: 'Success!'});
                         growl.error('No Tickets Found!',{title: 'Error!'});
                     }
                 },
                     function (error) {
-                        // Flash.create('error', error, 3000);
                         growl.error('Error! ' + error,{title: 'Error!'});
                     }
                 )
             };
-            console.log('coming into the controller')
+            console.log('coming into the controller');
 
             $scope.goToCreateMenu = function () {
                 $state.go('home.newTicket');
