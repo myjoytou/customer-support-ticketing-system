@@ -7,9 +7,9 @@
     angular.module('SupportApp', ['ui.router', 'angular-growl'])
 
         .config(['$stateProvider', '$urlRouterProvider', 'growlProvider', function ($stateProvider, $urlRouterProvider, growlProvider) {
-            $urlRouterProvider.otherwise('/home/tickets');
+            $urlRouterProvider.otherwise('/support_home/tickets');
             $stateProvider.state('supportHome', {
-                url: '/home',
+                url: '/support_home',
                 templateUrl: '/assets/support/support_home.html',
                 controller: 'SupportCtrl'
             });
@@ -33,12 +33,10 @@
                     console.log('the response is: ', response);
                     $state.go('supportHome.tickets');
                     if (response.data.data.length == 0) {
-                        // Flash.create('error', 'No Tickets Found!', 3000);
                         growl.error('No Tickets Found!',{title: 'Error!'});
                     }
                 },
                     function (error) {
-                        // Flash.create('error', error, 3000);
                         growl.error('Error!',{title: 'Error!'});
                     }
                 )
@@ -48,7 +46,7 @@
             $scope.processTicket = function (ticket_id) {
                 var request_obj = {ticket_id: ticket_id, status: 'Closed'};
                 SupportService.processTicket(request_obj).then(function (response) {
-                    // Flash.create('success', 'Ticket Processed!', 3000);
+                    console.log('processed!');
                     growl.success('Ticket Processed!',{title: 'Success!'});
                     $scope.getPendingTicket();
                 },
