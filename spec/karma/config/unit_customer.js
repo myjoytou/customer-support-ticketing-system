@@ -22,10 +22,8 @@ module.exports = function(config) {
         'app/assets/javascripts/angular-material.js',
         'app/assets/javascripts/customer.js',
         'app/assets/javascripts/services/customers/customer_service.js',
-        'app/assets/javascripts/support.js',
-        'app/assets/javascripts/services/supports/support_service.js',
         'app/assets/templates/**/*.html',
-        'spec/javascripts/**/*_spec.js'
+        'spec/javascripts/customer/**/*_spec.js'
     ],
 
     plugins: [
