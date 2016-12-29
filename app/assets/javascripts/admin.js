@@ -6,9 +6,9 @@
     angular.module('AdminApp', ['ui.router', 'angular-growl'])
 
         .config(['$stateProvider', '$urlRouterProvider', 'growlProvider', function ($stateProvider, $urlRouterProvider, growlProvider) {
-            $urlRouterProvider.otherwise('/home/welcome');
+            $urlRouterProvider.otherwise('/admin_home/welcome');
             $stateProvider.state('adminHome', {
-                url: '/home',
+                url: '/admin_home',
                 templateUrl: '/assets/admin/admin_home.html',
                 controller: 'AdminCtrl'
             });
@@ -25,11 +25,6 @@
             $stateProvider.state('adminHome.users', {
                 url: '/users',
                 templateUrl: '/assets/admin/user_list.html'
-            });
-
-            $stateProvider.state('adminHome.newTicket', {
-                url: '/new_ticket',
-                templateUrl: '/assets/admin/admin_new_ticket.html'
             });
             growlProvider.globalTimeToLive(3000);
         }])
