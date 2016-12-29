@@ -1,0 +1,8 @@
+{
+  "name": "Customer-App",
+  "dependencies": {
+    "karma": ">= 0.12.16",
+    "karma-jasmine": ">= 0.2.2",
+    "karma-ng-html2js-preprocessor": "git://github.com/monterail/karma-ng-html2js-preprocessor#feature/strip-sufix"
+  }
+}
