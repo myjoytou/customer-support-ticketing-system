@@ -36,22 +36,12 @@
                     successCallback: function (url) { deferred.resolve('Success!');},
                     failCallback: function (url) { deferred.reject('Error!') }
                 });
-                // $http.get('/supports/get_closed_tickets_report.pdf').then(function (response) {
-                //     var buffer = new Unit8Array(response.data.data);
-                //     var data = new Blob([myBuffer], {type: 'application/pdf;charset=UTF-8'});
-                //     FileSaver.saveAs(data, 'ClosedTicketReport');
-                //     deferred.resolve(response);
-                // },
-                //     function (error) {
-                //         deferred.reject(error);
-                //     }
-                // );
                 return deferred.promise;
             };
 
-            supports.downloadClosedTicketReport = downloadClosedTicketReport;
             supports.getPendingTicket = getPendingTicket;
             supports.processTicket = processTicket;
+            supports.downloadClosedTicketReport = downloadClosedTicketReport;
             return supports;
         }])
 })();
